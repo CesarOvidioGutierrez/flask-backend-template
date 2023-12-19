@@ -1,6 +1,5 @@
-from flask import request, make_response, jsonify
+from flask import request, make_response, jsonify, current_app
 
-from app import basic_auth
 from app.decorators.decorators import validate_email_decorator, validate_password_length_decorator
 from app.utils.jwt import create_token
 from app.config.constants import AuthConstants, AuthMessages
@@ -15,6 +14,8 @@ def handle_authentication():
 
     first_name = AuthConstants.FIRST_NAME.value
     last_name = AuthConstants.LAST_NAME.value
+
+    basic_auth = current_app.config['BASIC_AUTH']
     
     if email and password and basic_auth.check_credentials(email, password):
         token = create_token(email)
