@@ -1,4 +1,5 @@
-import os
+import os, logging
+
 
 from flask import Flask
 from flask_basicauth import BasicAuth
@@ -10,7 +11,11 @@ from .routes import init_app
 
 
 def create_app():
+    logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
     app = Flask(__name__)
+    logging.info(f'Se crea la app')
+
     load_dotenv()
 
     app = Flask(__name__)

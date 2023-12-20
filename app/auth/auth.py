@@ -1,3 +1,4 @@
+import logging
 from flask import request, make_response, jsonify, current_app
 
 from app.decorators.decorators import validate_email_decorator, validate_password_length_decorator
@@ -19,6 +20,9 @@ def handle_authentication():
     
     if email and password and basic_auth.check_credentials(email, password):
         token = create_token(email)
+        logging.info(f'Autenticación exitosa para el usuario {email}')
+
         return jsonify({'email': email, 'firstName':first_name, 'lastName': last_name, 'token': token})
 
+    logging.warning(f'Intento de autenticación fallido para el usuario {email}')
     return make_response(jsonify({'message': AuthMessages.INVALID_CREDENTIALS.value}), 401)
