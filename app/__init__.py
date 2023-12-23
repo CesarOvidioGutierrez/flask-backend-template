@@ -1,31 +1,31 @@
 import os, logging
 
-
 from flask import Flask
 from flask_basicauth import BasicAuth
 
 from dotenv import load_dotenv
 
 from .routes import init_app
+from .config.constants import CommonConstants, CommonMessages
 
 
 
 def create_app():
-    logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename=CommonConstants.LOG_FILE_NAME.value, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
     app = Flask(__name__)
-    logging.info(f'Se crea la app')
+    logging.info(CommonMessages.APP_CREATION_MESSAGE.value)
 
     load_dotenv()
 
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    app.config[CommonConstants.SECRET_KEY.value] = os.getenv(CommonConstants.SECRET_KEY.value)
 
-    app.config['BASIC_AUTH_USERNAME'] = os.getenv('BASIC_AUTH_USERNAME')
-    app.config['BASIC_AUTH_PASSWORD'] = os.getenv('BASIC_AUTH_PASSWORD')
+    app.config[CommonConstants.BASIC_AUTH_USERNAME.value] = os.getenv(CommonConstants.BASIC_AUTH_USERNAME.value)
+    app.config[CommonConstants.BASIC_AUTH_PASSWORD.value] = os.getenv(CommonConstants.BASIC_AUTH_PASSWORD.value)
 
     basic_auth = BasicAuth(app)
-    app.config['BASIC_AUTH'] = basic_auth
+    app.config[CommonConstants.BASIC_AUTH] = basic_auth
 
     init_app(app)
 
