@@ -34,6 +34,8 @@ pip3 install -r requirements.txt
 
 ## Run on Development Environment
 
+### Using Flask Run
+
 To run the application on the development environment, use the following command:
 
 ```bash
@@ -61,3 +63,26 @@ You can also set the host to 0.0.0.0 to allow access from external devices:
 flask run --host=0.0.0.0 --port 8082
 ```
 Now your Flask application will be accessible at http://localhost:8082/ or http://<your_ip>:8082/ if using --host=0.0.0.0.
+
+### Using Docker
+
+#### Install Docker
+Ensure you have Docker installed on your machine:
+
+- [Docker Installation Guide](https://docs.docker.com/get-docker/)
+
+#### Build Docker Image
+Build the Docker image:
+
+```bash
+docker build -t flask-backend-template .
+```
+
+#### Run the Docker container:
+
+```bash
+docker run -p 8082:5000 flask-backend-template
+```
+
+Now your Flask application will be accessible at http://localhost:8082/ or http://<your_ip>:8082/.
+
