@@ -7,6 +7,10 @@ class CommonConstants(Enum):
     BASIC_AUTH_USERNAME = 'BASIC_AUTH_USERNAME'
     BASIC_AUTH_PASSWORD = 'BASIC_AUTH_PASSWORD'
     LOG_FILE_NAME = 'app.log'
+    # Flask-restx for docs
+    DOCS_VERSION = '1.0'
+    DOCS_TITLE = 'Flask Backend Template'
+    DOCS_DESCRIPTION = 'A simple API'
     
 
 class CommonMessages(Enum):
