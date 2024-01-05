@@ -5,8 +5,9 @@ from flask_basicauth import BasicAuth
 
 from dotenv import load_dotenv
 
-from .routes import init_app
+from .routes import auth_blueprint, ns_auth
 from .config.constants import CommonConstants, CommonMessages
+from .config.extensions import api
 
 
 
@@ -27,6 +28,9 @@ def create_app():
     basic_auth = BasicAuth(app)
     app.config[CommonConstants.BASIC_AUTH] = basic_auth
 
-    init_app(app)
+    app.register_blueprint(auth_blueprint, url_prefix='/api', name='auth')
+
+    api.init_app(app, version=CommonConstants.DOCS_VERSION.value, title=CommonConstants.DOCS_TITLE.value, description=CommonConstants.DOCS_DESCRIPTION.value)
+    api.add_namespace(ns_auth)
 
     return app
