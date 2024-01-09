@@ -1,8 +1,8 @@
 import logging
 from flask import request, make_response, jsonify, current_app
 
-from app.decorators.decorators import validate_email_decorator, validate_password_length_decorator
-from app.utils.jwt import create_token
+from app.decorators import validate_email_decorator, validate_password_length_decorator
+from app.utils import create_token
 from app.config.constants import EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, BASIC_AUTH, SUCCESSFUL_AUTH_MESSAGE, FAILED_AUTH_MESSAGE, INVALID_CREDENTIALS
 
 

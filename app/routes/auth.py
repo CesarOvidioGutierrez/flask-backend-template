@@ -1,8 +1,8 @@
 from flask import Blueprint
 from flask_restx import Api, Resource, Namespace
 
-from app.auth.auth import handle_authentication
-from app.models.api_models import auth_input_model, auth_response_model
+from app.auth import handle_authentication
+from app.models import auth_input_model, auth_response_model
 
 AUTH = 'auth'
 auth_blueprint = Blueprint(AUTH, __name__)
