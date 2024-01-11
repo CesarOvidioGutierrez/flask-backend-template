@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask_restx import Api, Resource, Namespace
+from http import HTTPStatus
 
 from app.auth import handle_authentication
 from app.models import auth_input_model, auth_response_model
@@ -13,7 +14,7 @@ ns_auth = Namespace('api')
 class Auth(Resource):
 
     @api.expect(auth_input_model, validate=True)
-    @api.response(200, 'Success', auth_response_model)
+    @api.response(HTTPStatus.OK, 'Success', auth_response_model)
     def post(self):
         return handle_authentication()
 
