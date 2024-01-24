@@ -20,7 +20,6 @@ def test_invalid_email_validation(client):
 
     response = client.post('/api/auth', data=json.dumps(data), content_type='application/json')
 
-    print('response.json.get(message)', response.json.get('message'))
     assert response.status_code == HTTPStatus.BAD_REQUEST  
 
     assert 'message' in response.json
@@ -41,7 +40,6 @@ def test_invalid_password_validation(client, valid_credentials):
 
     response = client.post('/api/auth', data=json.dumps(data), content_type='application/json')
 
-    print('response.json.get(message)', response.json.get('message'))
     assert response.status_code == HTTPStatus.BAD_REQUEST  
 
     assert 'message' in response.json
